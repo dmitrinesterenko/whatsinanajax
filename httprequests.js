@@ -1,0 +1,47 @@
+(function(w){
+	el = w.document.getElementById('get');
+	el.onclick = function(){
+		getStuffOnGoodBrowsers(w, 'sample_data.json');
+	}
+	cors = w.document.getElementById('get_cross_domain');
+	cors.onclick = function(){
+		getStuffOnGoodBrowsers(w, 'http://goofdogs.com/sample_data.json');
+	}
+}(window));
+
+ renderData = function(w, data){
+	console.log(w, data);
+	el = window.document.getElementById('result');
+	// note that no parsing of the data type is being done
+	el.appendChild(data);
+     },
+ getStuffOnGoodBrowsers = function(w, url) {
+	//window.XMLHttpRequest object was originally invented by Microsoft Corporation, along with many other wonderful technologies the wonderful group of Microsoft engineers spent a good deal of time to popularize and promote their technology which has since been adopted by WebKit open source browser standard and hence by: Apple Corporation, Safari Group, Google Chrome Corporation, Netscape and Amazon Silk Group
+	// This is not using a factory and assumes that the object will be succesfful because we're on a modern webkit based browser
+	var x = new w.XMLHttpRequest();
+	console.log(x);
+	x.onreadystatechange = function(w){
+		console.log('The state had changed', x.readyState, x.status);
+		//console.log(x, x.responseText);
+		// readyState indicates the progress of the request, the steps are
+		// DONE: 4
+		// HEADERS_RECEIVED: 2
+		// LOADING: 3
+		// OPENED: 1
+		// UNSENT: 0 
+		if(x.readyState == 4){ //&& x.status == 200
+			console.log('I am ready', w, x.responseText);
+			renderData(w, x.responseText);
+		}
+			
+	}
+	// the main parameters of the XMLHttpRequest object are defined as 
+	//  XMLHttpRequest.open(bstrMethod, bstrUrl, varAsync, varUser, varPassword);
+  	// source: http://msdn.microsoft.com/en-us/library/ie/ms536648(v=vs.85).aspx
+	// we make an asynchonous GET HTTP request to a relative document  
+	// When the asynochronous parameter is true the calls returns immediately and the result is attached to the onreadystatechange method
+	console.log(x);
+	x.open('GET', url, true);
+	// nothing happens until you actually send the request, the optional parameter of send is the body of the request (important, eh)t
+	x.send();
+ };
