@@ -1,14 +1,17 @@
 require 'camping'
 
-Camping.goes :Axaj
+Camping.goes :Ajax
 
 
-module Ajax:Controllers
-
-
+module Ajax::Controllers
+  class Index 
+    def get
+      render :plain
+    end 
+  end
 end
 
-module Ajax:Views
+module Ajax::Views
    def layout
     html do
       head { title "Http Request examples" }
@@ -22,7 +25,7 @@ module Ajax:Views
   
   def plain
       
-     script { src: 'httprequests.js'}
+     script='httprequests.js'
   end
 
 end
