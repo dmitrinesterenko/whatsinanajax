@@ -11,15 +11,20 @@
     cors = w.document.getElementById('get_cross_domain');
     cors.onclick = function(){
         $.ajax({
-            method: 'POST',
-            url:'http://goofdogs.com:3301/script/sample_data.json'
+            method: 'GET',
+            url:'http://goofdogs.com:3301/scripts/sample_data_jsonp.json',
+            /*dataType: "jsonp",
+            jsonpCallback: "renderJsonPData"*/
 
         }).done(function(data){
                 renderData(w, data);
             });
 
     }
-}(window))
+}(window)) ,
+renderJsonPData = function(data){
+  renderData(window, data.content);
+},
 
 renderData = function(w, data){
     console.log(w, data);

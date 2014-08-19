@@ -5,7 +5,7 @@
     }
     cors = w.document.getElementById('get_cross_domain');
     cors.onclick = function(){
-        getStuffOnGoodBrowsers(w, 'http://goofdogs.com:3301/script/sample_data.json');
+        getStuffOnGoodBrowsers(w, 'http://goofdogs.com:3301/scripts/sample_data.json');
     }
 }(window))
 
